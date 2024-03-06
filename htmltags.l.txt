@@ -1,0 +1,23 @@
+/*identifying html tags */
+
+
+%{
+#include<stdio.h>
+%}
+
+%%
+\<[^>]*\> { printf("%s\n", yytext); }
+.|\n ;         // ignore any other characters
+%%
+
+int main()
+{
+    printf("Enter the input:\n");
+    yylex();
+    
+}
+
+int yywrap()
+{
+    return 1;
+}

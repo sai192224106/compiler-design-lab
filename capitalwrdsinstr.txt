@@ -1,0 +1,20 @@
+/*capital words in str*/
+
+
+%{
+#include <stdio.h>
+%}
+
+%%
+[A-Z]+[ \t\n] {printf("%s \n ",yytext);}
+. ;
+%%
+
+int main() {
+printf("enter input \n");
+    yylex();
+}
+
+int yywrap() {
+    return 1;
+}

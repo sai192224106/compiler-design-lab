@@ -1,0 +1,29 @@
+/* Lex Program to count numbers of lines, words, spaces and characters */
+
+%{
+#include<stdio.h>
+int lc=0,wc=0,sc=0,cc=0;
+%}
+
+%%
+[\n]    {lc++; cc+=yyleng;}
+[ \t]+  {sc++; cc+=yyleng;}
+[^\n\t ]+ {wc++; cc+=yyleng;}
+.       {cc++;} /* This rule counts any other character as a single character */
+%%
+
+int main()
+{
+    printf("Enter the sentence: \n");
+    yylex();
+    printf("No of lines: %d\n", lc);
+    printf("No of spaces: %d\n", sc);
+    printf("No of words: %d\n", wc);
+    printf("No of characters: %d\n", cc);
+    return 0;
+}
+
+int yywrap()
+{
+    return 1;
+}

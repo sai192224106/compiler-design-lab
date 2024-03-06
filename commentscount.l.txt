@@ -1,0 +1,22 @@
+/* comments count   */
+
+%{
+#include <stdio.h>
+int cnt= 0;
+%}
+
+%%
+"/*"[a-zA-Z0-9 \t\n]*"*/" {cnt++;}
+"\/\/"[a-zA-Z0-9 \t\n]*"\n" {cnt++;}
+%%
+
+int main() {
+printf("enter input \n");
+    yylex();
+
+    printf("no of comments in the given line is %d",cnt);
+}
+
+int yywrap() {
+    return 1;
+}

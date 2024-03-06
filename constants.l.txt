@@ -1,0 +1,22 @@
+/*identifying constants in the given input */
+
+%{
+#include<stdio.h>
+%}
+
+%%
+[0-9]+     {printf("\n Constant: %s\n", yytext);}
+.          // Ignore other characters
+%%
+
+int main()
+{
+    printf("Enter the input:\n");
+    yylex();
+    
+}
+
+int yywrap()
+{
+    return 1;
+}

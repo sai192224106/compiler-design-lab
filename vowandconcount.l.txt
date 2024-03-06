@@ -1,0 +1,24 @@
+/*vowel and consonant count */
+
+
+%{
+#include <stdio.h>
+int vc=0,cc=0;
+%}
+
+%% 
+[aeiouAEIOU] {vc++;}
+[a-zA-Z] {cc++;}  
+%%
+
+int main() {
+printf("enter input \n");
+    yylex();
+printf("\n vowel count : %d \n ",vc);
+printf("\n con count : %d ",cc);
+
+}
+
+int yywrap() {
+    return 1;
+}

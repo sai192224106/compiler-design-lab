@@ -1,0 +1,23 @@
+%{
+#include<stdio.h>
+%}
+
+%%
+bool|int|float|char|main|printf|scanf|double|void|if|for|if|else|while|do|return {printf("\n %s is a keyword \n ", yytext);}
+[a-zA-Z][a-zA-Z0-9]* {printf("\n %s is an identifier \n", yytext);}
+. ;
+
+%%
+
+int main()
+{
+    printf("\nEnter the input:\n");
+    yylex();
+    printf("\n");
+    return 0;
+}
+
+int yywrap()
+{
+    return 1;
+}

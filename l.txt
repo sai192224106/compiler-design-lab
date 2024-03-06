@@ -1,0 +1,19 @@
+/*line with line number */
+
+%{
+#include <stdio.h>
+int line_num = 1;
+%}
+
+%%
+^(.*)\n  { printf("%4d\t%s ", line_num++,yytext); }
+%%
+
+int main() {
+    yylex();
+    return 0;
+}
+
+int yywrap() {
+    return 1;
+}

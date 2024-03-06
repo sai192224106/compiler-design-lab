@@ -1,0 +1,21 @@
+/*num and words in statement */
+
+
+%{
+#include <stdio.h>
+
+%}
+
+%% 
+[0-9]+ {printf("num  %s \n",yytext);}
+[a-z]+ {printf("word is %s \n",yytext);}
+%%
+
+int main() {
+printf("enter input \n");
+    yylex();
+}
+
+int yywrap() {
+    return 1;
+}

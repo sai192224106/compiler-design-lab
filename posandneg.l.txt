@@ -1,0 +1,21 @@
+/*positive and negative number */
+
+
+%{
+#include <stdio.h>
+
+%}
+
+%% 
+^[-][0-9]+ {printf("%s is a negative number  \n",yytext);}
+[0-9]+ {printf("%s is a positive number \n",yytext);}
+%%
+
+int main() {
+printf("enter input \n");
+    yylex();
+}
+
+int yywrap() {
+    return 1;
+}

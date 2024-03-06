@@ -1,0 +1,25 @@
+%{
+#include<stdio.h>
+int wc=0, nc=0;
+%}
+
+%%
+[0-9]+ {nc++;}
+[ ] {wc++;}
+.|\n { }
+%%
+
+int main()
+{
+    printf("\nEnter the input:\n");
+    yylex();
+    printf("\n");
+printf("num count = %d \n",nc);
+printf("word count = %d \n",wc);
+    return 0;
+}
+
+int yywrap()
+{
+    return 1;
+}

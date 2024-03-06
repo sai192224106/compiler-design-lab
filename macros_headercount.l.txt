@@ -1,0 +1,42 @@
+/*macros and header count*/
+
+%{
+#include <stdio.h>
+int macro_count = 0;
+int header_count = 0;
+%}
+
+
+%%
+^#include".*    { header_count++; }              
+^#define".*     { macro_count++; }
+.;
+
+%%
+
+int main() {
+    printf("enter the input \n");
+    yylex();
+    printf("Number of Macros defined: %d\n", macro_count);
+    printf("Number of Header files included: %d\n", header_count);
+    
+}
+
+int yywrap()
+{
+    return 1;
+}
+
+
+// dot star
+
+
+
+
+/*%%: This is a Lex directive that separates the three sections of a Lex file -
+ the definitions section, the rules section, and the user subroutines section.*\
+
+/*^"#include".*: This is a Lex pattern that matches lines starting with #include. 
+Here, ^ matches the beginning of a line, "#include" matches the literal text #include,
+and .* matches any characters (zero or more times) after #include.
+ This pattern captures lines that include header files.*/

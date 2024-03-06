@@ -1,0 +1,25 @@
+/*valid email*/
+
+
+%{
+#include <stdio.h>
+int f=0;
+%}
+
+%%
+[a-z0-9]+@[a-z]+".com"|".in" {f=1;}
+. ;
+%%
+
+int main() {
+printf("enter input \n");
+    yylex();
+if(f==1)
+printf("\n valid email address \n");
+else
+printf("\n not valid email \n");
+}
+
+int yywrap() {
+    return 1;
+}
