@@ -1,0 +1,37 @@
+%{
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+int wctr=0, nctr=0;
+char n[10][10], w[10][10];
+%}
+
+%%
+
+[0-9]+ { strcpy(n[nctr++], yytext); }
+[a-zA-Z]+ { strcpy(w[wctr++], yytext); }
+. ;
+
+%%
+
+int main() {
+    int i;
+    printf("Enter input: \n");
+    yylex();
+
+    printf("Numbers: ");
+    for (i = 0; i < nctr; i++)
+        printf("%s ", n[i]);
+    printf("\n");
+
+    printf("Words: ");
+    for (i = 0; i < wctr; i++)
+        printf("%s ", w[i]);
+    printf("\n");
+
+    return 0;
+}
+
+int yywrap() {
+    return 1;
+}

@@ -1,0 +1,24 @@
+%{
+#include <stdio.h>
+#include <ctype.h>
+int f=0;
+%}
+
+%%
+^(a|e|i|o|u|A|E|I|O|U).* {f=1;}
+. ;
+%%
+
+int main() {
+    printf("enter input: ");
+    yylex();
+if (f==1)
+printf("valid \n");
+else
+printf("invalid \n");
+    return 0;
+}
+
+int yywrap() {
+    return 1;
+}

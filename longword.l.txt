@@ -1,0 +1,29 @@
+%{
+#include <string.h>
+int longlen = 0;
+char longword[100];
+%}
+
+%%
+[a-zA-Z]+    {
+               if (strlen(yytext) > longlen) {
+                   longlen = strlen(yytext);
+                   strcpy(longword, yytext);
+               }
+             }
+.|\n          ;
+
+%%
+
+int main(int argc, char *argv[]) {
+    yylex();
+    printf("Longest word: %s\n", longword);
+    printf("Length: %d\n", longlen);
+    return 0;
+}
+
+
+int yywrap()
+{
+    return 1;
+}
